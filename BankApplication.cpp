@@ -16,7 +16,7 @@ void BankApplication::addClient(string Name, string addrs, int phnNum, double bl
     if (typ == 1){
         fstream infoFile("Basic.txt", ios_base::app | ios_base::out);
 
-        infoFile << Name << endl;
+        infoFile << "\n" <<  Name << endl;
 
         while (getline(infoFile, line)){
             lines++;
@@ -32,7 +32,7 @@ void BankApplication::addClient(string Name, string addrs, int phnNum, double bl
     }
     if (typ == 2){
         fstream infoFile("Basic.txt", ios_base::app | ios_base::out);
-        infoFile << Name << endl;
+        infoFile << "\n" << Name << endl;
 
         while (getline(infoFile, line)){
             lines++;
