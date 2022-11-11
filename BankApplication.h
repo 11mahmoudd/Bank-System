@@ -21,12 +21,9 @@ public:
 };
 
 class Client : public BankApplication{
-private:
-    string Name;
-    string Address;
-    int Phone;
 public:
     Client();
+    void client_data(string &name,int typ);
 };
 
 class BankAccount : public BankApplication{
@@ -49,3 +46,4 @@ public:
 };
 
 #endif //BANKAPPLICATION_BANKAPPLICATION_H
+
