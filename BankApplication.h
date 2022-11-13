@@ -32,8 +32,12 @@ private:
     double balance;
 public:
     BankAccount();
-    int Withdraw(double amount);
-    int deposit(double amount);
+    BankAccount(string id, double bal);
+    double setbalance(double num);
+    double getbalance();
+    string getID();
+    double Withdraw(double amount, string name);
+    double deposit(double amount,string name);
 };
 
 class SavingsBankAccount : public BankAccount{
