@@ -142,38 +142,39 @@ void BankApplication::addClient(string Name, string addrs, int phnNum, double bl
     string line;
 
     if (typ == 1){
-        fstream infoFile("Basic.txt", ios_base::app | ios_base::out |ios_base::in);
-
-        infoFile <<  Name << "\n";
+        fstream infoFile("Accounts.txt", ios_base::app | ios_base::out |ios_base::in);
 
         while (getline(infoFile, line)){
             lines++;
         }
+        lines += lines;
+        infoFile << "FCAI-0" << lines << "\n";
 
-        fstream clientInfo("Basic - " + Name + ".txt", ios::out);
+        fstream clientInfo(to_string(lines) + ".txt", ios::out);
+        clientInfo  << "Name : " <<Name   << "\n"
+                    << "Address : " << addrs  << "\n"
+                    << "Phone : " << phnNum << "\n"
+                    << "Account Type : Basic Account" << "\n"
+                    << "Balance : " << blnc   << "\n"
+                    << "Account ID : FCAI-0" << lines << "\n";
+        clientInfo.close();
+    }
+    if (typ == 2){
+        fstream infoFile("Accounts.txt", ios_base::app | ios_base::out |ios_base::in);
+
+        while (getline(infoFile, line)){
+            lines++;
+        }
+        lines += lines;
+        infoFile << "FCAI-0" << lines << "\n";
+
+        fstream clientInfo(to_string(lines) + ".txt", ios::out);
         clientInfo  << "Name : " <<Name   << "\n"
                     << "Address : " << addrs  << "\n"
                     << "Phone : " << phnNum << "\n"
                     << "Account Type : Saving Account" << "\n"
                     << "Balance : " << blnc   << "\n"
-                    << "Account ID : FCAI" << "-00" << lines + 1 << "\n";
-        clientInfo.close();
-    }
-    if (typ == 2){
-        fstream infoFile("Saving.txt", ios_base::app | ios_base::out);
-        infoFile << Name << "\n";
-
-        while (getline(infoFile, line)){
-            lines++;
-        }
-
-        fstream clientInfo("Saving - " + Name +".txt", ios::out);
-        clientInfo << "Name : " <<Name   << "\n"
-                    << "Address : " << addrs  << "\n"
-                    << "Phone : " << phnNum << "\n"
-                    << "Account Type : Saving Account" << "\n"
-                    << "Balance : " << blnc   << "\n"
-                    << "FCAI" << "-00" << lines + 1 << "\n";
+                    << "Account ID : FCAI-0" << lines << "\n";
         clientInfo.close();
     }
 }
