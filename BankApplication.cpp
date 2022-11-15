@@ -211,7 +211,6 @@ SavingsBankAccount :: SavingsBankAccount()
     balance = minimumBalance;
 }
 
-//override the withdraw function and make it not take any money out if the balance is less than the minimum balance
 double SavingsBankAccount :: Withdraw(double amount, string id)
 {
     const int LINE = 5;
@@ -260,7 +259,6 @@ double SavingsBankAccount :: Withdraw(double amount, string id)
 
 }
 
-//override the deposit function and make it not put any money less than 100
 double SavingsBankAccount ::deposit(double amount, string id)
 {
     const int LINE = 5;
