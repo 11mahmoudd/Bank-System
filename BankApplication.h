@@ -42,11 +42,12 @@ public:
 
 class SavingsBankAccount : public BankAccount{
 private:
-    double minimumBalance;
+    double balance;
+    double minimumBalance = 1000.00;
 public:
     SavingsBankAccount();
-    int Withdraw(double amount);
-    int deposit(double amount);
+    double Withdraw(double amount, string id);
+    double deposit(double amount, string id);
 };
 
 #endif //BANKAPPLICATION_BANKAPPLICATION_H
