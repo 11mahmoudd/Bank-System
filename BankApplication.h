@@ -1,7 +1,3 @@
-//
-// Created by Malik on 11/10/2022.
-//
-
 #ifndef BANKAPPLICATION_BANKAPPLICATION_H
 #define BANKAPPLICATION_BANKAPPLICATION_H
 
@@ -23,7 +19,7 @@ public:
 class Client : public BankApplication{
 public:
     Client();
-    void client_data(string &name,int typ);
+    void Client::client_data(string& id)
 };
 
 class BankAccount : public BankApplication{

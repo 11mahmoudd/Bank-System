@@ -177,31 +177,18 @@ void BankApplication::addClient(string Name, string addrs, int phnNum, double bl
     }
 }
 
-void Client::client_data(string& name,int typ) {
+void Client::client_data(string& id) {
     fstream file;
     string line;
-    file.open("Basic.txt", ios::in);
+    file.open("Accounts.txt", ios::in);
     while (getline(file, line)) {
-        if (line == name) {
+        if (line == "FCAI-0" + id) {
             fstream clientInfo;
-            clientInfo.open("Basic - " + name + ".txt", ios::in);
+            clientInfo.open(id + ".txt", ios::in);
             while (getline(clientInfo, line)) {
                 cout << line << endl;
             }
             break;
-        }
-        fstream file2;
-        string line2;
-        file2.open("Saving.txt", ios::in);
-        while (getline(file2, line2)) {
-            if (line2 == name) {
-                fstream clientInfo;
-                clientInfo.open("Saving - " + name + ".txt", ios::in);
-                while (getline(clientInfo, line2)) {
-                    cout << line2 << endl;
-                }
-                break;
-            }
         }
     }
 }
