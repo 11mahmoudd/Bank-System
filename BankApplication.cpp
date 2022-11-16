@@ -49,7 +49,7 @@ string BankAccount :: getID()
 
 double BankAccount :: Withdraw(double amount, string id)
 {
-    const int LINE = 5;
+    const int LINE = 6;
     fstream clientInfo("FCAI-0" + id + ".txt", ios::in);
     fstream clientclone;
     clientclone.open("temp.txt",ios::out);
@@ -80,20 +80,19 @@ double BankAccount :: Withdraw(double amount, string id)
         remove( filename.c_str());
         rename("temp.txt",filename.c_str());
         balance -= amount;
-        cout<<"New Balance : "<<balance<<endl;
+        cout<<"New Balance : " << balance << endl;
         return balance;
-
     }
     else
     {
         cout <<"Sorry. This is more than what you can withdraw" << endl;
+        return balance;
     }
-
 }
 
 double BankAccount :: deposit(double amount,string id)
 {
-    const int LINE = 5;
+    const int LINE = 6;
     fstream clientInfo("FCAI-0" + id + ".txt", ios::in);
     fstream clientclone;
     clientclone.open("temp.txt",ios::out);
@@ -105,7 +104,7 @@ double BankAccount :: deposit(double amount,string id)
     clientInfo.close();
     balance=stod(line);
 
-    remain=to_string(balance += amount);
+    remain=to_string(balance + amount);
     clientInfo.open("FCAI-0" + id + ".txt", ios::in);
     while (!clientInfo.eof())
     {
@@ -122,7 +121,7 @@ double BankAccount :: deposit(double amount,string id)
     remove( filename.c_str());
     rename("temp.txt",filename.c_str());
     balance += amount;
-    cout<<"New Balance : "<<balance<<endl;
+    cout << "New Balance : " << balance << endl;
     return balance;
 
 }
@@ -151,7 +150,7 @@ void BankApplication::addClient(string Name, string addrs, int phnNum, double bl
                     << "Address : " << addrs  << "\n"
                     << "Phone : " << phnNum << "\n"
                     << "Account Type : Basic Account" << "\n"
-                    << "Balance : " << blnc   << "\n"
+                    << "Balance : \n" << blnc   << "\n"
                     << "Account ID : FCAI-0" << lines << "\n";
         clientInfo.close();
         Basicfile.close();
@@ -168,7 +167,7 @@ void BankApplication::addClient(string Name, string addrs, int phnNum, double bl
                     << "Address : " << addrs  << "\n"
                     << "Phone : " << phnNum << "\n"
                     << "Account Type : Saving Account" << "\n"
-                    << "Balance : " << blnc   << "\n"
+                    << "Balance : \n" << blnc   << "\n"
                     << "Account ID : FCAI-0" << lines << "\n";
         clientInfo.close();
         Savingfile.close();
@@ -201,7 +200,8 @@ SavingsBankAccount :: SavingsBankAccount()
 
 double SavingsBankAccount :: Withdraw(double amount, string id)
 {
-    const int LINE = 5;
+    const int LINE = 6;
+    double min = minimumBalance;
     fstream clientInfo("FCAI-0" + id + ".txt", ios::in);
     fstream clientclone;
     clientclone.open("temp.txt",ios::out);
@@ -212,7 +212,7 @@ double SavingsBankAccount :: Withdraw(double amount, string id)
     }
     clientInfo.close();
     balance=stod(line);
-    if (amount >= minimumBalance){
+    if (amount >= min){
         if(amount <= balance)
         {
             remain = to_string(balance-amount);
@@ -220,11 +220,9 @@ double SavingsBankAccount :: Withdraw(double amount, string id)
             while (!clientInfo.eof())
             {
                 getline(clientInfo,temp);
-                cout << temp << endl;
                 if (temp == line)
                 {
                     temp.replace(temp.find(line), line.length(), remain);
-                    cout << temp << endl;
                 }
                 clientclone << temp << endl;
             }
@@ -233,23 +231,27 @@ double SavingsBankAccount :: Withdraw(double amount, string id)
             string filename = "FCAI-0" + id  + ".txt";
             remove( filename.c_str());
             rename("temp.txt",filename.c_str());
-            cout<<"New Balance : ";
-            return balance -= amount;
+            balance -= amount;
+            cout<<"New Balance : " << balance << endl;
+            return balance;
         }
         else
         {
             cout <<"Sorry. This is more than what you can withdraw" << endl;
+            return balance;
         }
     }
     else {
         cout << "Sorry. You can't withdraw less than the minimum balance" << endl;
+        return balance;
     }
+
 
 }
 
 double SavingsBankAccount ::deposit(double amount, string id)
 {
-    const int LINE = 5;
+    const int LINE = 6;
     if (amount >= 100){
         fstream clientInfo("FCAI-0" + id + ".txt", ios::in);
         fstream clientclone;
@@ -262,16 +264,14 @@ double SavingsBankAccount ::deposit(double amount, string id)
         clientInfo.close();
         balance=stod(line);
 
-        remain=to_string(balance += amount);
+        remain=to_string(balance + amount);
         clientInfo.open("FCAI-0" + id + ".txt", ios::in);
         while (!clientInfo.eof())
         {
             getline(clientInfo,temp);
-            cout << temp << endl;
             if (temp == line)
             {
                 temp.replace(temp.find(line), line.length(), remain);
-                cout << temp << endl;
             }
             clientclone << temp << endl;
         }
@@ -280,11 +280,13 @@ double SavingsBankAccount ::deposit(double amount, string id)
         string filename = "FCAI-0" + id + ".txt";
         remove( filename.c_str());
         rename("temp.txt",filename.c_str());
-        cout << "New Balance : ";
-        return balance += amount;
+        balance += amount;
+        cout << "New Balance : " << balance << endl;
+        return balance;
     }
     else {
         cout << "Sorry. You can't deposit less than 100" << endl;
+        return balance;
     }
 
 }

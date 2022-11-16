@@ -66,7 +66,8 @@ int main()
             C1.client_data(id);
         }
         if (option == 3) {
-            cout << "Enter your id : FCAI-0";
+            cout << "------------------------------------------------------- \n"
+                 << "Enter your id : FCAI-0";
             cin >> id;
             Account_tyep(id,typ);
             if (typ == 1) {
@@ -74,16 +75,19 @@ int main()
                 cout << "Enter amount you want to withdraw :";
                 cin >> amount;
                 A1.Withdraw(amount, id);
+                cout << "------------------------------------------------------- \n";
             }
             if (typ == 2) {
                 SavingsBankAccount A1;
                 cout << "Enter amount you want to withdraw :";
                 cin >> amount;
                 A1.Withdraw(amount, id);
+                cout << "------------------------------------------------------- \n";
             }
         }
         if (option == 4) {
-            cout << "Enter your id : FCAI-0";
+            cout << "------------------------------------------------------- \n"
+                 << "Enter your id : FCAI-0";
             cin >> id;
             Account_tyep(id,typ);
             if (typ == 1) {
@@ -91,20 +95,21 @@ int main()
                 cout << "Enter amount you want to Deposit :";
                 cin >> amount;
                 A1.deposit(amount, id);
+                cout << "------------------------------------------------------- \n";
             }
             if (typ == 2) {
                 SavingsBankAccount A1;
                 cout << "Enter amount you want to Deposit :";
                 cin >> amount;
                 A1.deposit(amount, id);
+                cout << "------------------------------------------------------- \n";
             }
         }
 
         if (option == 5) {
-                cout << "------- << thanks for your time :) >> -------" << endl;
             break;
         }
-        cout << "Another Operation ? (y/n)" << endl;
+        cout << " Another Operation ? (y/n)" << endl;
         char option2;
         cin >> option2;
         if(option2 == 'y')
