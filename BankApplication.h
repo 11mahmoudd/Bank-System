@@ -32,8 +32,8 @@ public:
     double setbalance(double num);
     double getbalance();
     string getID();
-    double Withdraw(double amount, string name);
-    double deposit(double amount,string name);
+    double Withdraw(double amount, string id);
+    double deposit(double amount,string id);
 };
 
 class SavingsBankAccount : public BankAccount{
