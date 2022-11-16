@@ -132,41 +132,40 @@ Client ::Client() {
 
 }
 void BankApplication::addClient(string Name, string addrs, int phnNum, double blnc, int typ){
-    int lines = 0;
+    int lines;
     string line;
 
+    ifstream infoFile("Accounts.txt");
+    while (getline(infoFile, line)){
+        lines++;
+    }
+    lines++;
+    infoFile.close();
     if (typ == 1){
-        fstream infoFile("Accounts.txt", ios_base::app | ios_base::out |ios_base::in);
-        fstream Basicfile("Basic.txt", ios_base::app | ios_base::out |ios_base::in);
+        fstream Basicfile("Basic.txt", ios::app | ios::out |ios::in);
 
-        while (getline(infoFile, line)){
-            lines++;
-        }
-        lines += lines;
+        ofstream infoFile("Accounts.txt", ios::app);
         infoFile << "FCAI-0" << lines << "\n";
         Basicfile << "FCAI-0" << lines << "\n";
 
-        fstream clientInfo(to_string(lines) + ".txt", ios::out);
-        clientInfo  << "Name : " <<Name   << "\n"
+        fstream clientInfo("FCAI-0" + to_string(lines) + ".txt", ios::out);
+        clientInfo  << "Name : " << Name << "\n"
                     << "Address : " << addrs  << "\n"
                     << "Phone : " << phnNum << "\n"
                     << "Account Type : Basic Account" << "\n"
-                    << "Balance : " << blnc   << "\n"
+                    << "Balance : " << blnc << "\n"
                     << "Account ID : FCAI-0" << lines << "\n";
         clientInfo.close();
+        Basicfile.close();
+        infoFile.close();
     }
     if (typ == 2){
-        fstream infoFile("Accounts.txt", ios_base::app | ios_base::out |ios_base::in);
-        fstream Savingfile("Saving.txt", ios_base::app | ios_base::out |ios_base::in);
-
-        while (getline(infoFile, line)){
-            lines++;
-        }
-        lines += lines;
+        fstream Savingfile("Saving.txt", ios::app | ios::out |ios::in);
+        ofstream infoFile("Accounts.txt", ios::app);
         infoFile << "FCAI-0" << lines << "\n";
         Savingfile << "FCAI-0" << lines << "\n";
 
-        fstream clientInfo(to_string(lines) + ".txt", ios::out);
+        fstream clientInfo("FCAI-0" + to_string(lines) + ".txt", ios::out);
         clientInfo  << "Name : " <<Name   << "\n"
                     << "Address : " << addrs  << "\n"
                     << "Phone : " << phnNum << "\n"
@@ -174,6 +173,8 @@ void BankApplication::addClient(string Name, string addrs, int phnNum, double bl
                     << "Balance : " << blnc   << "\n"
                     << "Account ID : FCAI-0" << lines << "\n";
         clientInfo.close();
+        Savingfile.close();
+        infoFile.close();
     }
 }
 
@@ -287,4 +288,3 @@ double SavingsBankAccount ::deposit(double amount, string id)
     }
 
 }
-

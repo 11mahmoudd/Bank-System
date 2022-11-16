@@ -19,7 +19,7 @@ public:
 class Client : public BankApplication{
 public:
     Client();
-    void Client::client_data(string& id)
+    void client_data(string& id);
 };
 
 class BankAccount : public BankApplication{
